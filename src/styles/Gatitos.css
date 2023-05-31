@@ -1,0 +1,103 @@
+.miHtml{
+    background-color: lightgreen;
+}
+
+.headerMain{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.box{
+    justify-self: center;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.input {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: 4px solid black;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: Comic Sans MS;
+    font-size: 26px;
+    color: black;
+    outline: none;
+    transition: .5s;
+}
+.box:hover input{
+    width: 350px;
+    background: lightgray;
+    border-radius: 10px;
+}
+.box i{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+    color: #ffd52d;
+    transition: .2s;
+}
+.box:hover i{
+    opacity: 0;
+    z-index: -1;
+}
+
+.contenedorGatitos{
+    width: 100%;
+}
+
+.gatito {
+     
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: lightgray;
+    border: 5px solid black;
+    padding-top: 5px;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+   height: min-content;
+    border-radius: 50px;
+    margin: 1%;
+  }
+  
+  .gatito img {
+    width: 60%;
+    height: min-content;
+    object-fit: cover;
+  }
+  
+  .gatito .labels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3px;
+  }
+
+  .nombreGatito{
+    font-size: x-large;
+    font-weight: 800;
+  }
+  
+  .divBotones{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 5px;
+  }
+
+  .boton{
+    font-weight: 700;
+    border: 2px solid black;
+    border-radius: 14px;
+    margin: 5px;
+  }
+  
+  
