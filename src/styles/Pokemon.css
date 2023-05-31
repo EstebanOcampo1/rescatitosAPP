@@ -1,0 +1,54 @@
+.miHtml{
+    background-color: red;
+}
+
+.divPokemon{
+    
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: lightgray;
+    border: 5px solid black;
+    
+    align-content: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    display: grid;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    
+  
+
+}
+
+.contenedor{
+    width: 100%;
+    justify-content: center;
+   
+    
+}
+
+.listIcon{
+    justify-self: center;
+
+}
+
+.pokedex{
+    width: 100%;
+}
+
+.divTipos{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tipo{
+    font-weight: 700;
+    border: 2px solid black;
+    border-radius: 14px;
+    padding: 5px;
+    
+}
+
+
+
