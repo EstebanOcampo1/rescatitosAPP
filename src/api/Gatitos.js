@@ -34,13 +34,14 @@ const getGatito = async (id) => {
 }
 
 
-const createGatico = async (foto,nombre,edad, sexo) => {
+const createGatico = async (foto,nombre,edad, sexo, descripcion) => {
     try {
       await addDoc(gatoCollectionRef, {
         foto:foto,
         nombre: nombre,
         edad: edad,
-        sexo: sexo
+        sexo: sexo,
+        descripcion: descripcion
       });
       //alerta y limpiar campos
       Swal.fire({
@@ -65,7 +66,7 @@ const deleteGatico = async(id) => {
     }
 }
 
-const updateGatico = async (id , gatico, newnombre, newEdad, newSexo, newfoto, ) => {
+const updateGatico = async (id , gatico, newnombre, newEdad, newSexo, newfoto, newdescripcion ) => {
     const gaticoDoc = doc(db, "gatitos", id);
     console.log("holaa, aquitamos");
     try {
@@ -73,7 +74,8 @@ const updateGatico = async (id , gatico, newnombre, newEdad, newSexo, newfoto, )
             nombre: (newnombre === undefined ? gatico.nombre : newnombre),
             edad: (newEdad === undefined ? gatico.Edad : newEdad),
             foto: (newfoto=== undefined ? gatico.foto : newfoto),
-            sexo: (newSexo === undefined ? gatico.sexo : newSexo)
+            sexo: (newSexo === undefined ? gatico.sexo : newSexo),
+            descripcion: (newdescripcion === undefined ? gatico.descripcion : newdescripcion)
         };
         await updateDoc(gaticoDoc, newInfo);
     } catch (error) {
