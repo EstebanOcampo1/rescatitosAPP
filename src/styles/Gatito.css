@@ -1,0 +1,32 @@
+.miHtmlGatito {
+  background: rgb(86, 197, 249);
+  background: linear-gradient(
+    90deg,
+    rgba(86, 197, 249, 1) 0%,
+    rgba(211, 240, 248, 1) 100%
+  );
+  width: 100%;
+  height: 100lvh;
+}
+
+.foto {
+    width: 40%;
+    float: left;
+    }
+
+.foto img {
+    width: 80%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+
+h5 {
+    font-weight: 600;
+}
+
+
