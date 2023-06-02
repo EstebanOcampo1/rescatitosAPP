@@ -1,8 +1,9 @@
 import React from 'react'
 import {useState,useEffect} from 'react';
 import '../styles/Gatitos.css'
-import { createGatico, deleteGatico, getGatitos, updateGatico } from '../api/Gatitos';
+import { createGatico, createGatico,deleteGatico, getGatitos, updateGatico } from '../api/Gatitos';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 export default function Gatitos() {
     const [query, setquery] = useState("");
@@ -31,7 +32,7 @@ export default function Gatitos() {
               deleteGatico(idGatico);
               Swal.fire(
                   'Borrado!',
-                  'El gatico con "' + nombre + '" se ha borrado del sistema',
+                  'El gatico "' + nombre + '" se ha borrado del sistema',
                   'success'
               ).then((r) => {
                   if (r.isConfirmed) {
@@ -87,22 +88,22 @@ export default function Gatitos() {
     })
 }
 
-function crearGatito(nombre, sexo,edad, foto, descripcion) {
+function crearGatito() {
   Swal.fire({
-      title: 'Actualice los datos',
+      title: 'Ingrese los datos',
       width: window.innerWidth < 1200 ? '100%' : '60%',
       showCloseButton: true,
       html:
           '<div><label class="swal2-label col-md-2">Nombre </label>' +
-          '<input id="swal-inputNombre" class="swal2-input swal2-select" value="' + nombre + '"> </div>' +
+          '<input id="swal-inputNombre" class="swal2-input swal2-select"> </div>' +
           '<div> <label class="swal2-label col-md-2"> Sexo </label>' +
-          '<input id="swal-inputSexo" class="swal2-input swal2-select" value="' + sexo + '"> </div>' +
+          '<input id="swal-inputSexo" class="swal2-input swal2-select"> </div>' +
           '<div> <label class="swal2-label col-md-2"> Edad </label>' +
-          '<input id="swal-inputEdad" class="swal2-input swal2-select" value="' + edad + '"> </div>' +
+          '<input id="swal-inputEdad" class="swal2-input swal2-select" > </div>' +
           '<div><label class="swal2-label col-md-2"> Foto </label>' +
-          '<input id="swal-inputFoto" class="swal2-input swal2-select" value="' + foto + '"> </div>' +
+          '<input id="swal-inputFoto" class="swal2-input swal2-select"> </div>' +
           '<div><label class="swal2-label col-md-2"> Descripcion </label>' +
-          '<input id="swal-inputDescripcion" class="swal2-input swal2-select" value="' + descripcion + '"></div>'
+          '<input id="swal-inputDescripcion" class="swal2-input swal2-select"></div>'
       ,
       focusConfirm: false,
       preConfirm: () => {
@@ -116,7 +117,7 @@ function crearGatito(nombre, sexo,edad, foto, descripcion) {
       }
   }).then((result) => {
       if (result.isConfirmed) {
-          createGatico(result.value[0], result.value[1], result.value[3], result.value[2], result.value[4])
+          crearGatito(result.value[0], result.value[1], result.value[3], result.value[2], result.value[4])
           Swal.fire(
               'Actualizado!',
               'El Gatito ha sido creado correctamente!',
@@ -130,6 +131,9 @@ function crearGatito(nombre, sexo,edad, foto, descripcion) {
   })
 }
 
+const buscarGatito=gatos?.slice(0,gatos.length).filter((gato)=>{
+    return gato.nombre.toLowerCase().match(query.toLowerCase());
+});
 
 
   return (
@@ -145,33 +149,41 @@ function crearGatito(nombre, sexo,edad, foto, descripcion) {
         <input className="input"
         type="text" 
         placeholder="Busca un gatito"
-        value={query}
         
         onChange={(e)=>setquery(e.target.value)}
         />
         
     </header> 
     <div className='d-flex justify-content-around flex-wrap  contenedorGatitos'>
-    <div className='col-3 gatito'>
-      <img
-        src="https://bestfriends.org/sites/default/files/styles/story_desktop_1920x1230_/public/story_images/Goob5222LF_1124x554.jpg?h=5c78e16c&itok=T2QpIcxT"
-        alt="Imagen"
     
-      />
-      <div className='labels'>
-        <label className='nombreGatito'>Plutarca</label>
-        <label>F</label>
-        <label>5 meses</label>
-        <div className='divBotones'>
-          {/* Cambiar este numbero y poner el editarGatito */}
-        <button type="button" className='boton' onClick={()=>{}}>Editar</button>
-        <button type="button" className='boton' onClick={()=>{eliminarGatito(12)}}>Eliminar</button>
-        </div>
-      </div>
-    </div>
-    
-    
+    {buscarGatito?.slice(0,gatos.length).map((gato)=>(
+        <div className='col-3 gatito' key={gato.id}> 
+         <img
+         src={gato.foto}
+         alt="Imagen"
+       />
+       <div className='labels'>
+         <Link to={`/Rescatitos/${gato.id}`} className='listItem' key={gato.id}>
+         <label className='nombreGatito'>{gato.nombre}</label>
+         </Link>
+         <label>{gato.sexo}</label>
+         <label>{gato.edad}</label>
+         <div className='divBotones'>   
+           {/* Cambiar este numbero y poner el editarGatito */}
+         <button type="button" className='boton' onClick={()=>{editarGatito(gato.id,gato,gato.nombre, gato.sexo,gato.edad, gato.foto, gato.descripcion)}}>Editar</button>
+         <button type="button" className='boton' onClick={()=>{eliminarGatito(gato.id, gato.nombre)}}>Eliminar</button>
+         </div>
+       </div>
+       </div>
+    ))
 
+    } 
+     
+      
+    
+    
+    
+    <button type="button" className='boton' onClick={()=>{crearGatito()}}>Añadir gatito</button>
     </div> 
     </div>
 
