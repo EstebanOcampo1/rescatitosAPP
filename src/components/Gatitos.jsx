@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState,useEffect} from 'react';
 import '../styles/Gatitos.css'
-import { deleteGatico, getGatitos, updateGatico } from '../api/Gatitos';
+import { createGatico, deleteGatico, getGatitos, updateGatico } from '../api/Gatitos';
 import Swal from 'sweetalert2';
 
 export default function Gatitos() {
@@ -116,7 +116,7 @@ function crearGatito(nombre, sexo,edad, foto, descripcion) {
       }
   }).then((result) => {
       if (result.isConfirmed) {
-          crearGatito(result.value[0], result.value[1], result.value[3], result.value[2], result.value[4])
+          createGatico(result.value[0], result.value[1], result.value[3], result.value[2], result.value[4])
           Swal.fire(
               'Actualizado!',
               'El Gatito ha sido creado correctamente!',
